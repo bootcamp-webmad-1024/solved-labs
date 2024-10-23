@@ -29,4 +29,32 @@ class Quiz {
     hasEnded() {
         return this.currentQuestionIndex >= this.questions.length
     }
+
+     filterQuestionsByDifficulty(difficulty) {
+
+        if (difficulty > 0 && difficulty < 4 && !isNaN(difficulty)) {
+
+            const filteredQuestions = this.questions.filter(eachQuestion => {
+                return eachQuestion.difficulty === difficulty
+            })
+
+            this.questions = filteredQuestions
+        }
+    }
+
+    averageDifficulty() {
+
+        const sumDifficulty = this.questions.reduce((acc, eachQuestion) => {
+
+            // if (eachPresident.leftOffice === null) {
+            //     return acc
+            // }
+
+            return acc + eachQuestion.difficulty
+        }, 0)
+
+        const average = sumDifficulty / this.questions.length
+
+        return average
+    }
 }
